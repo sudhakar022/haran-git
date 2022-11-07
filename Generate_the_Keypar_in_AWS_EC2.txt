@@ -1,0 +1,113 @@
+sudo useradd vaithiyalingam.s
+
+sudo passwd vaithiyalingam.s
+
+V@!T#!y@L!nG!@W!234
+
+cd ssh_other_user/
+
+ssh-keygen -t rsa -b 2048
+
+vaithiyalingam.s
+
+V@!T#!y@L!nG!@W!234
+
+ssh-keygen -y
+
+vaithiyalingam.s
+
+V@!T#!y@L!nG!@W!234
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDl8yp+EoQv+ViligU0J8dsbjitsr4c0GYAS2r/7iGilSilJR21jmlO7Vc+soKyixlgtPLn2Wpt19xA84XhR58urmsmg7YnGUYBfcgPBAFO3+SeBrbklRcI01GFecUePeKafA0qzgEtJKyfyk2UyfbdHqifDMbUvlq+8TVE5RtcgFxmQQPNRDyzmBgpfLs+4LPyRL5ZYFigmJynTqLuOiAudi9CykgAOaM2vREaJVRfUjvq5Oq822W41RmyO6zI8zMGSSp1Bhc2+/L3mZRe+sY7bo1gm7QPC4CY/+1e4ZgZ5LKcUAMiuBMx3M4mZqtw+2s+0kgowl7HehZxRsc2tv+P
+
+sudo su
+
+cd /home/vaithiyalingam.s
+
+mkdir .ssh
+
+chmod 700 .ssh
+
+chown vaithiyalingam.s:vaithiyalingam.s .ssh
+
+cd .ssh/
+
+vi authorized_keys
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDl8yp+EoQv+ViligU0J8dsbjitsr4c0GYAS2r/7iGilSilJR21jmlO7Vc+soKyixlgtPLn2Wpt19xA84XhR58urmsmg7YnGUYBfcgPBAFO3+SeBrbklRcI01GFecUePeKafA0qzgEtJKyfyk2UyfbdHqifDMbUvlq+8TVE5RtcgFxmQQPNRDyzmBgpfLs+4LPyRL5ZYFigmJynTqLuOiAudi9CykgAOaM2vREaJVRfUjvq5Oq822W41RmyO6zI8zMGSSp1Bhc2+/L3mZRe+sY7bo1gm7QPC4CY/+1e4ZgZ5LKcUAMiuBMx3M4mZqtw+2s+0kgowl7HehZxRsc2tv+P
+
+chmod 600 authorized_keys
+
+chown vaithiyalingam.s:vaithiyalingam.s authorized_keys
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SUDO ACCESS
+
+vi /etc/sudoers
+
+
+vaithiyalingam.s ALL= ALL,!/bin/su,!/bin/bash
+
+esc :qw!
+
+systemctl restart sshd
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+EXISTING USER WITH PPK FILE AND USER PASSWORD FOLLOW BELOW COMMAND
+
+
+
+sudo useradd ashok
+
+sudo passwd ashok
+
+Bo@tr$ee!As%ho&k
+
+sudo su
+
+cd /home/ashok
+
+mkdir .ssh
+
+chmod 700 .ssh
+
+chown ashok:ashok .ssh
+
+cd .ssh/
+
+vi authorized_keys
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAhACxjcoVifg/b7EQRkeY7GBtKKRaklfHVgX+gDMS1KthQGEQAiFofUQMH1EPjTOUl2W41QLAoE4n4eBcXuu166YTqe2MrMsOSB9ZaC8rLD8y+D/LoUjqcC7vm3FXW4Ny+mCrzsc92Ff98q0nQfAtChn/1Nsk2z8pXcsdag8ETT5GZkzIew==
+
+
+esc :wq  to save
+
+chmod 600 authorized_keys
+
+chown ashok:ashok authorized_keys
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+SUDO ACCESS
+
+vi /etc/sudoers
+
+
+ashok ALL= ALL,!/bin/su,!/bin/bash
+
+esc :wq!
+
+systemctl restart sshd
+
+
+
+
+
+
+
+

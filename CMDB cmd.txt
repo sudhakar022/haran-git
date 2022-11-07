@@ -1,0 +1,40 @@
+
+1-Find os       cat /etc/os-release
+
+2-RPM -qa (or) yum list installed
+ for ubantu -- apt list --installed
+  --
+ds agent.   Antivirus
+Frontconfig
+httd 
+Mysql 
+Marriyadb
+mongodb
+postgresql12-server.x86_64 
+
+Open jdk.  java -version 
+python     python --version
+
+3)User list.     cat /etc/passwd
+
+-----------------------------------------------
+openjdk version "11.0.16.1
+Python 2.7.18
+
+
+root    
+ec2-user 
+ashok 
+muthuraman 
+
+
+
+
+
+
+
+
+
+
+
+ 

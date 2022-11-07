@@ -1,0 +1,592 @@
+[root@ip-10-25-15-20 ec2-user]# fdisk -l
+Disk /dev/nvme1n1: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+
+
+Disk /dev/nvme0n1: 120 GiB, 128849018880 bytes, 251658240 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 30B4269A-8501-4012-B8AE-5DBF6CBBACA8
+
+Device           Start       End   Sectors  Size Type
+/dev/nvme0n1p1    4096 251658206 251654111  120G Linux filesystem
+/dev/nvme0n1p128  2048      4095      2048    1M BIOS boot
+
+Partition table entries are not in disk order.
+[root@ip-10-25-15-20 ec2-user]# fdisk /dev/nvme1n1
+
+Welcome to fdisk (util-linux 2.30.2).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x3c835951.
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1):
+First sector (2048-104857599, default 2048):
+Last sector, +sectors or +size{K,M,G,T,P} (2048-104857599, default 104857599):
+
+Created a new partition 1 of type 'Linux' and of size 50 GiB.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@ip-10-25-15-20 ec2-user]# fdsik -l
+bash: fdsik: command not found
+[root@ip-10-25-15-20 ec2-user]# fdisk -l
+Disk /dev/nvme1n1: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: dos
+Disk identifier: 0x3c835951
+
+Device         Boot Start       End   Sectors Size Id Type
+/dev/nvme1n1p1       2048 104857599 104855552  50G 83 Linux
+
+
+Disk /dev/nvme0n1: 120 GiB, 128849018880 bytes, 251658240 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 30B4269A-8501-4012-B8AE-5DBF6CBBACA8
+
+Device           Start       End   Sectors  Size Type
+/dev/nvme0n1p1    4096 251658206 251654111  120G Linux filesystem
+/dev/nvme0n1p128  2048      4095      2048    1M BIOS boot
+
+Partition table entries are not in disk order.
+[root@ip-10-25-15-20 ec2-user]# mkfs.ext4 /dev/nvme1n1p1
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+3276800 inodes, 13106944 blocks
+655347 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=2162163712
+400 block groups
+32768 blocks per group, 32768 fragments per group
+8192 inodes per group
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+        4096000, 7962624, 11239424
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+[root@ip-10-25-15-20 ec2-user]# mkdir /mnt/ebs1
+[root@ip-10-25-15-20 ec2-user]# mount /dev/nvme1n1
+nvme1n1    nvme1n1p1
+[root@ip-10-25-15-20 ec2-user]# mount /dev/nvme1n1p1 /mnt/ebs1/
+[root@ip-10-25-15-20 ec2-user]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.8G     0  3.8G   0% /dev
+tmpfs           3.8G     0  3.8G   0% /dev/shm
+tmpfs           3.8G  468K  3.8G   1% /run
+tmpfs           3.8G     0  3.8G   0% /sys/fs/cgroup
+/dev/nvme0n1p1  120G  1.8G  119G   2% /
+tmpfs           774M     0  774M   0% /run/user/1000
+tmpfs           774M     0  774M   0% /run/user/0
+/dev/nvme1n1p1   50G   53M   47G   1% /mnt/ebs1
+[root@ip-10-25-15-20 ec2-user]# blkid
+/dev/nvme1n1: PTUUID="3c835951" PTTYPE="dos"
+/dev/nvme1n1p1: UUID="db20d5b3-0f78-419b-89df-cbb3fbb1be80" TYPE="ext4" PARTUUID="3c835951-01"
+/dev/nvme0n1: PTUUID="30b4269a-8501-4012-b8ae-5dbf6cbbaca8" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="2a7884f1-a23b-49a0-8693-ae82c155e5af" TYPE="xfs" PARTLABEL="Linux" PARTUUID="4d1e3134-c9e4-456d-a253-374c91394e99"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="c31217ab-49a8-4c94-a774-32a6564a79f5"
+[root@ip-10-25-15-20 ec2-user]#
+[root@ip-10-25-15-20 ec2-user]# vi /etc/fstab
+[root@ip-10-25-15-20 ec2-user]# cat /etc/fstab
+#
+UUID=2a7884f1-a23b-49a0-8693-ae82c155e5af     /           xfs    defaults,noatime  1   1
+UUID=db20d5b3-0f78-419b-89df-cbb3fbb1be80    /mnt/ebs1    ext4   defaults          1   1
+[root@ip-10-25-15-20 ec2-user]# reboot
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Mon May 23 18:51:27 2022 from 115.249.202.98
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-25-15-20 ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.8G     0  3.8G   0% /dev
+tmpfs           3.8G     0  3.8G   0% /dev/shm
+tmpfs           3.8G  416K  3.8G   1% /run
+tmpfs           3.8G     0  3.8G   0% /sys/fs/cgroup
+/dev/nvme0n1p1  120G  1.8G  119G   2% /
+/dev/nvme1n1p1   50G   53M   47G   1% /mnt/ebs1
+tmpfs           774M     0  774M   0% /run/user/1000
+[ec2-user@ip-10-25-15-20 ~]$ sudo dd if=/dev/zero of=/swapfile bs=1M count=20480
+20480+0 records in
+20480+0 records out
+21474836480 bytes (21 GB) copied, 148.961 s, 144 MB/s
+[ec2-user@ip-10-25-15-20 ~]$ sudo chmod 600 /swapfile
+[ec2-user@ip-10-25-15-20 ~]$ sudo mkswap /swapfile
+Setting up swapspace version 1, size = 20 GiB (21474832384 bytes)
+no label, UUID=98b50422-2d37-4c31-ab2e-3eb9762e1a7a
+[ec2-user@ip-10-25-15-20 ~]$ sudo swapon /swapfile
+[ec2-user@ip-10-25-15-20 ~]$ sudo vi /etc/fstab
+[ec2-user@ip-10-25-15-20 ~]$ free -g
+              total        used        free      shared  buff/cache   available
+Mem:              7           0           0           0           7           7
+Swap:            19           0          19
+[ec2-user@ip-10-25-15-20 ~]$ reboot
+Failed to execute operation: The name org.freedesktop.PolicyKit1 was not provided by any .service files
+Must be root.
+[ec2-user@ip-10-25-15-20 ~]$ sudo su
+[root@ip-10-25-15-20 ec2-user]# reboot
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Mon May 23 19:16:36 2022 from 115.249.202.98
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-25-15-20 ~]$ free -g
+              total        used        free      shared  buff/cache   available
+Mem:              7           0           7           0           0           7
+Swap:            19           0          19
+[ec2-user@ip-10-25-15-20 ~]$ sudo yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package perl-DateTime.x86_64 2:1.04-6.amzn2.1.0 will be installed
+--> Processing Dependency: perl(Params::Validate) >= 0.76 for package: 2:perl-DateTime-1.04-6.amzn2.1.0.x86_64
+--> Processing Dependency: perl(DateTime::TimeZone) >= 1.09 for package: 2:perl-DateTime-1.04-6.amzn2.1.0.x86_64
+--> Processing Dependency: perl(DateTime::Locale) >= 0.41 for package: 2:perl-DateTime-1.04-6.amzn2.1.0.x86_64
+--> Processing Dependency: perl(Try::Tiny) for package: 2:perl-DateTime-1.04-6.amzn2.1.0.x86_64
+---> Package perl-Digest-SHA.x86_64 1:5.85-4.amzn2.0.2 will be installed
+--> Processing Dependency: perl(Digest::base) for package: 1:perl-Digest-SHA-5.85-4.amzn2.0.2.x86_64
+---> Package perl-LWP-Protocol-https.noarch 0:6.04-4.amzn2 will be installed
+--> Processing Dependency: perl(Net::HTTPS) >= 6 for package: perl-LWP-Protocol-https-6.04-4.amzn2.noarch
+--> Processing Dependency: perl(Mozilla::CA) >= 20110101 for package: perl-LWP-Protocol-https-6.04-4.amzn2.noarch
+--> Processing Dependency: perl(IO::Socket::SSL) >= 1.54 for package: perl-LWP-Protocol-https-6.04-4.amzn2.noarch
+--> Processing Dependency: perl(LWP::Protocol::http) for package: perl-LWP-Protocol-https-6.04-4.amzn2.noarch
+---> Package perl-Switch.noarch 0:2.16-7.amzn2 will be installed
+---> Package perl-Sys-Syslog.x86_64 0:0.33-3.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package perl-DateTime-Locale.noarch 0:0.45-6.amzn2 will be installed
+--> Processing Dependency: perl(List::MoreUtils) for package: perl-DateTime-Locale-0.45-6.amzn2.noarch
+---> Package perl-DateTime-TimeZone.noarch 0:1.70-2.amzn2 will be installed
+--> Processing Dependency: perl(Class::Singleton) >= 1.03 for package: perl-DateTime-TimeZone-1.70-2.amzn2.noarch
+--> Processing Dependency: perl(Class::Load) for package: perl-DateTime-TimeZone-1.70-2.amzn2.noarch
+---> Package perl-Digest.noarch 0:1.17-245.amzn2 will be installed
+---> Package perl-IO-Socket-SSL.noarch 0:1.94-7.amzn2.0.1 will be installed
+--> Processing Dependency: perl-Net-SSLeay >= 1.55-5 for package: perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch
+--> Processing Dependency: perl(Net::SSLeay) >= 1.21 for package: perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch
+--> Processing Dependency: perl(IO::Socket::IP) >= 0.20 for package: perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch
+--> Processing Dependency: perl(Net::SSLeay) for package: perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch
+--> Processing Dependency: perl(Net::LibIDN) for package: perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch
+---> Package perl-Mozilla-CA.noarch 0:20130114-5.amzn2 will be installed
+---> Package perl-Net-HTTP.noarch 0:6.06-2.amzn2 will be installed
+--> Processing Dependency: perl(IO::Uncompress::Gunzip) for package: perl-Net-HTTP-6.06-2.amzn2.noarch
+--> Processing Dependency: perl(Compress::Raw::Zlib) for package: perl-Net-HTTP-6.06-2.amzn2.noarch
+---> Package perl-Params-Validate.x86_64 0:1.08-4.amzn2.0.2 will be installed
+--> Processing Dependency: perl(Module::Implementation) for package: perl-Params-Validate-1.08-4.amzn2.0.2.x86_64
+---> Package perl-Try-Tiny.noarch 0:0.12-2.amzn2 will be installed
+---> Package perl-libwww-perl.noarch 0:6.05-2.amzn2 will be installed
+--> Processing Dependency: perl(WWW::RobotRules) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(URI) >= 1.10 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(LWP::MediaTypes) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Status) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Response) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Request::Common) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Request) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Negotiate) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Date) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Daemon) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTTP::Cookies) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(File::Listing) >= 6 for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(URI::Heuristic) for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(URI::Escape) for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTML::HeadParser) for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(HTML::Entities) for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(Encode::Locale) for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Processing Dependency: perl(Digest::MD5) for package: perl-libwww-perl-6.05-2.amzn2.noarch
+--> Running transaction check
+---> Package perl-Class-Load.noarch 0:0.20-3.amzn2 will be installed
+--> Processing Dependency: perl(Package::Stash) >= 0.14 for package: perl-Class-Load-0.20-3.amzn2.noarch
+--> Processing Dependency: perl(Module::Runtime) >= 0.012 for package: perl-Class-Load-0.20-3.amzn2.noarch
+--> Processing Dependency: perl(Module::Runtime) for package: perl-Class-Load-0.20-3.amzn2.noarch
+--> Processing Dependency: perl(Data::OptList) for package: perl-Class-Load-0.20-3.amzn2.noarch
+---> Package perl-Class-Singleton.noarch 0:1.4-14.amzn2 will be installed
+---> Package perl-Compress-Raw-Zlib.x86_64 1:2.061-4.amzn2.0.2 will be installed
+---> Package perl-Digest-MD5.x86_64 0:2.52-3.amzn2.0.2 will be installed
+---> Package perl-Encode-Locale.noarch 0:1.03-5.amzn2 will be installed
+---> Package perl-File-Listing.noarch 0:6.04-7.amzn2 will be installed
+---> Package perl-HTML-Parser.x86_64 0:3.71-4.amzn2.0.2 will be installed
+--> Processing Dependency: perl(HTML::Tagset) >= 3 for package: perl-HTML-Parser-3.71-4.amzn2.0.2.x86_64
+---> Package perl-HTTP-Cookies.noarch 0:6.01-5.amzn2 will be installed
+---> Package perl-HTTP-Daemon.noarch 0:6.01-8.amzn2 will be installed
+---> Package perl-HTTP-Date.noarch 0:6.02-8.amzn2 will be installed
+--> Processing Dependency: perl(Time::Zone) for package: perl-HTTP-Date-6.02-8.amzn2.noarch
+---> Package perl-HTTP-Message.noarch 0:6.06-6.amzn2 will be installed
+--> Processing Dependency: perl(IO::HTML) for package: perl-HTTP-Message-6.06-6.amzn2.noarch
+---> Package perl-HTTP-Negotiate.noarch 0:6.01-5.amzn2 will be installed
+---> Package perl-IO-Compress.noarch 0:2.061-2.amzn2 will be installed
+--> Processing Dependency: perl(Compress::Raw::Bzip2) >= 2.061 for package: perl-IO-Compress-2.061-2.amzn2.noarch
+---> Package perl-IO-Socket-IP.noarch 0:0.21-5.amzn2 will be installed
+---> Package perl-LWP-MediaTypes.noarch 0:6.02-2.amzn2 will be installed
+--> Processing Dependency: mailcap for package: perl-LWP-MediaTypes-6.02-2.amzn2.noarch
+---> Package perl-List-MoreUtils.x86_64 0:0.33-9.amzn2.0.2 will be installed
+---> Package perl-Module-Implementation.noarch 0:0.06-6.amzn2 will be installed
+---> Package perl-Net-LibIDN.x86_64 0:0.12-15.amzn2.0.2 will be installed
+---> Package perl-Net-SSLeay.x86_64 0:1.55-6.amzn2.0.1 will be installed
+---> Package perl-URI.noarch 0:1.60-9.amzn2 will be installed
+--> Processing Dependency: perl(Data::Dumper) for package: perl-URI-1.60-9.amzn2.noarch
+--> Processing Dependency: perl(Business::ISBN) for package: perl-URI-1.60-9.amzn2.noarch
+---> Package perl-WWW-RobotRules.noarch 0:6.02-5.amzn2 will be installed
+--> Running transaction check
+---> Package mailcap.noarch 0:2.1.41-2.amzn2 will be installed
+---> Package perl-Business-ISBN.noarch 0:2.06-2.amzn2 will be installed
+--> Processing Dependency: perl(Business::ISBN::Data) >= 20120719.001 for package: perl-Business-ISBN-2.06-2.amzn2.noarch
+---> Package perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.amzn2.0.2 will be installed
+---> Package perl-Data-Dumper.x86_64 0:2.145-3.amzn2.0.2 will be installed
+---> Package perl-Data-OptList.noarch 0:0.107-9.amzn2 will be installed
+--> Processing Dependency: perl(Sub::Install) >= 0.921 for package: perl-Data-OptList-0.107-9.amzn2.noarch
+--> Processing Dependency: perl(Params::Util) for package: perl-Data-OptList-0.107-9.amzn2.noarch
+---> Package perl-HTML-Tagset.noarch 0:3.20-15.amzn2 will be installed
+---> Package perl-IO-HTML.noarch 0:1.00-2.amzn2 will be installed
+---> Package perl-Module-Runtime.noarch 0:0.013-4.amzn2 will be installed
+---> Package perl-Package-Stash.noarch 0:0.34-2.amzn2 will be installed
+--> Processing Dependency: perl(Package::Stash::XS) >= 0.26 for package: perl-Package-Stash-0.34-2.amzn2.noarch
+--> Processing Dependency: perl(Package::DeprecationManager) for package: perl-Package-Stash-0.34-2.amzn2.noarch
+---> Package perl-TimeDate.noarch 1:2.30-2.amzn2 will be installed
+--> Running transaction check
+---> Package perl-Business-ISBN-Data.noarch 0:20120719.001-2.amzn2 will be installed
+---> Package perl-Package-DeprecationManager.noarch 0:0.13-7.amzn2 will be installed
+---> Package perl-Package-Stash-XS.x86_64 0:0.26-3.amzn2.0.2 will be installed
+---> Package perl-Params-Util.x86_64 0:1.07-6.amzn2.0.2 will be installed
+---> Package perl-Sub-Install.noarch 0:0.926-6.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=================================================================================================================================================================================
+ Package                                                 Arch                           Version                                         Repository                          Size
+=================================================================================================================================================================================
+Installing:
+ perl-DateTime                                           x86_64                         2:1.04-6.amzn2.1.0                              amzn2-core                         112 k
+ perl-Digest-SHA                                         x86_64                         1:5.85-4.amzn2.0.2                              amzn2-core                          59 k
+ perl-LWP-Protocol-https                                 noarch                         6.04-4.amzn2                                    amzn2-core                          11 k
+ perl-Switch                                             noarch                         2.16-7.amzn2                                    amzn2-core                          22 k
+ perl-Sys-Syslog                                         x86_64                         0.33-3.amzn2.0.2                                amzn2-core                          42 k
+Installing for dependencies:
+ mailcap                                                 noarch                         2.1.41-2.amzn2                                  amzn2-core                          31 k
+ perl-Business-ISBN                                      noarch                         2.06-2.amzn2                                    amzn2-core                          25 k
+ perl-Business-ISBN-Data                                 noarch                         20120719.001-2.amzn2                            amzn2-core                          24 k
+ perl-Class-Load                                         noarch                         0.20-3.amzn2                                    amzn2-core                          27 k
+ perl-Class-Singleton                                    noarch                         1.4-14.amzn2                                    amzn2-core                          18 k
+ perl-Compress-Raw-Bzip2                                 x86_64                         2.061-3.amzn2.0.2                               amzn2-core                          32 k
+ perl-Compress-Raw-Zlib                                  x86_64                         1:2.061-4.amzn2.0.2                             amzn2-core                          58 k
+ perl-Data-Dumper                                        x86_64                         2.145-3.amzn2.0.2                               amzn2-core                          48 k
+ perl-Data-OptList                                       noarch                         0.107-9.amzn2                                   amzn2-core                          23 k
+ perl-DateTime-Locale                                    noarch                         0.45-6.amzn2                                    amzn2-core                         1.6 M
+ perl-DateTime-TimeZone                                  noarch                         1.70-2.amzn2                                    amzn2-core                         351 k
+ perl-Digest                                             noarch                         1.17-245.amzn2                                  amzn2-core                          23 k
+ perl-Digest-MD5                                         x86_64                         2.52-3.amzn2.0.2                                amzn2-core                          30 k
+ perl-Encode-Locale                                      noarch                         1.03-5.amzn2                                    amzn2-core                          16 k
+ perl-File-Listing                                       noarch                         6.04-7.amzn2                                    amzn2-core                          13 k
+ perl-HTML-Parser                                        x86_64                         3.71-4.amzn2.0.2                                amzn2-core                         115 k
+ perl-HTML-Tagset                                        noarch                         3.20-15.amzn2                                   amzn2-core                          18 k
+ perl-HTTP-Cookies                                       noarch                         6.01-5.amzn2                                    amzn2-core                          26 k
+ perl-HTTP-Daemon                                        noarch                         6.01-8.amzn2                                    amzn2-core                          21 k
+ perl-HTTP-Date                                          noarch                         6.02-8.amzn2                                    amzn2-core                          14 k
+ perl-HTTP-Message                                       noarch                         6.06-6.amzn2                                    amzn2-core                          82 k
+ perl-HTTP-Negotiate                                     noarch                         6.01-5.amzn2                                    amzn2-core                          17 k
+ perl-IO-Compress                                        noarch                         2.061-2.amzn2                                   amzn2-core                         260 k
+ perl-IO-HTML                                            noarch                         1.00-2.amzn2                                    amzn2-core                          23 k
+ perl-IO-Socket-IP                                       noarch                         0.21-5.amzn2                                    amzn2-core                          36 k
+ perl-IO-Socket-SSL                                      noarch                         1.94-7.amzn2.0.1                                amzn2-core                         115 k
+ perl-LWP-MediaTypes                                     noarch                         6.02-2.amzn2                                    amzn2-core                          24 k
+ perl-List-MoreUtils                                     x86_64                         0.33-9.amzn2.0.2                                amzn2-core                          58 k
+ perl-Module-Implementation                              noarch                         0.06-6.amzn2                                    amzn2-core                          17 k
+ perl-Module-Runtime                                     noarch                         0.013-4.amzn2                                   amzn2-core                          19 k
+ perl-Mozilla-CA                                         noarch                         20130114-5.amzn2                                amzn2-core                          11 k
+ perl-Net-HTTP                                           noarch                         6.06-2.amzn2                                    amzn2-core                          29 k
+ perl-Net-LibIDN                                         x86_64                         0.12-15.amzn2.0.2                               amzn2-core                          28 k
+ perl-Net-SSLeay                                         x86_64                         1.55-6.amzn2.0.1                                amzn2-core                         289 k
+ perl-Package-DeprecationManager                         noarch                         0.13-7.amzn2                                    amzn2-core                          18 k
+ perl-Package-Stash                                      noarch                         0.34-2.amzn2                                    amzn2-core                          34 k
+ perl-Package-Stash-XS                                   x86_64                         0.26-3.amzn2.0.2                                amzn2-core                          32 k
+ perl-Params-Util                                        x86_64                         1.07-6.amzn2.0.2                                amzn2-core                          38 k
+ perl-Params-Validate                                    x86_64                         1.08-4.amzn2.0.2                                amzn2-core                          70 k
+ perl-Sub-Install                                        noarch                         0.926-6.amzn2                                   amzn2-core                          21 k
+ perl-TimeDate                                           noarch                         1:2.30-2.amzn2                                  amzn2-core                          52 k
+ perl-Try-Tiny                                           noarch                         0.12-2.amzn2                                    amzn2-core                          24 k
+ perl-URI                                                noarch                         1.60-9.amzn2                                    amzn2-core                         107 k
+ perl-WWW-RobotRules                                     noarch                         6.02-5.amzn2                                    amzn2-core                          18 k
+ perl-libwww-perl                                        noarch                         6.05-2.amzn2                                    amzn2-core                         205 k
+
+Transaction Summary
+=================================================================================================================================================================================
+Install  5 Packages (+45 Dependent packages)
+
+Total download size: 4.3 M
+Installed size: 19 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/50): mailcap-2.1.41-2.amzn2.noarch.rpm                                                                                                                 |  31 kB  00:00:00
+(2/50): perl-Business-ISBN-2.06-2.amzn2.noarch.rpm                                                                                                        |  25 kB  00:00:00
+(3/50): perl-Business-ISBN-Data-20120719.001-2.amzn2.noarch.rpm                                                                                           |  24 kB  00:00:00
+(4/50): perl-Class-Load-0.20-3.amzn2.noarch.rpm                                                                                                           |  27 kB  00:00:00
+(5/50): perl-Class-Singleton-1.4-14.amzn2.noarch.rpm                                                                                                      |  18 kB  00:00:00
+(6/50): perl-Compress-Raw-Bzip2-2.061-3.amzn2.0.2.x86_64.rpm                                                                                              |  32 kB  00:00:00
+(7/50): perl-Data-Dumper-2.145-3.amzn2.0.2.x86_64.rpm                                                                                                     |  48 kB  00:00:00
+(8/50): perl-Compress-Raw-Zlib-2.061-4.amzn2.0.2.x86_64.rpm                                                                                               |  58 kB  00:00:00
+(9/50): perl-Data-OptList-0.107-9.amzn2.noarch.rpm                                                                                                        |  23 kB  00:00:00
+(10/50): perl-DateTime-1.04-6.amzn2.1.0.x86_64.rpm                                                                                                        | 112 kB  00:00:00
+(11/50): perl-DateTime-TimeZone-1.70-2.amzn2.noarch.rpm                                                                                                   | 351 kB  00:00:00
+(12/50): perl-DateTime-Locale-0.45-6.amzn2.noarch.rpm                                                                                                     | 1.6 MB  00:00:00
+(13/50): perl-Digest-1.17-245.amzn2.noarch.rpm                                                                                                            |  23 kB  00:00:00
+(14/50): perl-Digest-MD5-2.52-3.amzn2.0.2.x86_64.rpm                                                                                                      |  30 kB  00:00:00
+(15/50): perl-Digest-SHA-5.85-4.amzn2.0.2.x86_64.rpm                                                                                                      |  59 kB  00:00:00
+(16/50): perl-Encode-Locale-1.03-5.amzn2.noarch.rpm                                                                                                       |  16 kB  00:00:00
+(17/50): perl-File-Listing-6.04-7.amzn2.noarch.rpm                                                                                                        |  13 kB  00:00:00
+(18/50): perl-HTML-Parser-3.71-4.amzn2.0.2.x86_64.rpm                                                                                                     | 115 kB  00:00:00
+(19/50): perl-HTML-Tagset-3.20-15.amzn2.noarch.rpm                                                                                                        |  18 kB  00:00:00
+(20/50): perl-HTTP-Cookies-6.01-5.amzn2.noarch.rpm                                                                                                        |  26 kB  00:00:00
+(21/50): perl-HTTP-Daemon-6.01-8.amzn2.noarch.rpm                                                                                                         |  21 kB  00:00:00
+(22/50): perl-HTTP-Date-6.02-8.amzn2.noarch.rpm                                                                                                           |  14 kB  00:00:00
+(23/50): perl-HTTP-Message-6.06-6.amzn2.noarch.rpm                                                                                                        |  82 kB  00:00:00
+(24/50): perl-HTTP-Negotiate-6.01-5.amzn2.noarch.rpm                                                                                                      |  17 kB  00:00:00
+(25/50): perl-IO-Compress-2.061-2.amzn2.noarch.rpm                                                                                                        | 260 kB  00:00:00
+(26/50): perl-IO-Socket-IP-0.21-5.amzn2.noarch.rpm                                                                                                        |  36 kB  00:00:00
+(27/50): perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch.rpm                                                                                                   | 115 kB  00:00:00
+(28/50): perl-LWP-MediaTypes-6.02-2.amzn2.noarch.rpm                                                                                                      |  24 kB  00:00:00
+(29/50): perl-IO-HTML-1.00-2.amzn2.noarch.rpm                                                                                                             |  23 kB  00:00:00
+(30/50): perl-LWP-Protocol-https-6.04-4.amzn2.noarch.rpm                                                                                                  |  11 kB  00:00:00
+(31/50): perl-List-MoreUtils-0.33-9.amzn2.0.2.x86_64.rpm                                                                                                  |  58 kB  00:00:00
+(32/50): perl-Module-Implementation-0.06-6.amzn2.noarch.rpm                                                                                               |  17 kB  00:00:00
+(33/50): perl-Module-Runtime-0.013-4.amzn2.noarch.rpm                                                                                                     |  19 kB  00:00:00
+(34/50): perl-Mozilla-CA-20130114-5.amzn2.noarch.rpm                                                                                                      |  11 kB  00:00:00
+(35/50): perl-Net-HTTP-6.06-2.amzn2.noarch.rpm                                                                                                            |  29 kB  00:00:00
+(36/50): perl-Net-LibIDN-0.12-15.amzn2.0.2.x86_64.rpm                                                                                                     |  28 kB  00:00:00
+(37/50): perl-Net-SSLeay-1.55-6.amzn2.0.1.x86_64.rpm                                                                                                      | 289 kB  00:00:00
+(38/50): perl-Package-DeprecationManager-0.13-7.amzn2.noarch.rpm                                                                                          |  18 kB  00:00:00
+(39/50): perl-Package-Stash-0.34-2.amzn2.noarch.rpm                                                                                                       |  34 kB  00:00:00
+(40/50): perl-Package-Stash-XS-0.26-3.amzn2.0.2.x86_64.rpm                                                                                                |  32 kB  00:00:00
+(41/50): perl-Params-Util-1.07-6.amzn2.0.2.x86_64.rpm                                                                                                     |  38 kB  00:00:00
+(42/50): perl-Params-Validate-1.08-4.amzn2.0.2.x86_64.rpm                                                                                                 |  70 kB  00:00:00
+(43/50): perl-Sub-Install-0.926-6.amzn2.noarch.rpm                                                                                                        |  21 kB  00:00:00
+(44/50): perl-Switch-2.16-7.amzn2.noarch.rpm                                                                                                              |  22 kB  00:00:00
+(45/50): perl-Sys-Syslog-0.33-3.amzn2.0.2.x86_64.rpm                                                                                                      |  42 kB  00:00:00
+(46/50): perl-TimeDate-2.30-2.amzn2.noarch.rpm                                                                                                            |  52 kB  00:00:00
+(47/50): perl-Try-Tiny-0.12-2.amzn2.noarch.rpm                                                                                                            |  24 kB  00:00:00
+(48/50): perl-URI-1.60-9.amzn2.noarch.rpm                                                                                                                 | 107 kB  00:00:00
+(49/50): perl-WWW-RobotRules-6.02-5.amzn2.noarch.rpm                                                                                                      |  18 kB  00:00:00
+(50/50): perl-libwww-perl-6.05-2.amzn2.noarch.rpm                                                                                                         | 205 kB  00:00:00
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                             10 MB/s | 4.3 MB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : perl-Try-Tiny-0.12-2.amzn2.noarch                                                                                                                            1/50
+  Installing : 1:perl-Compress-Raw-Zlib-2.061-4.amzn2.0.2.x86_64                                                                                                            2/50
+  Installing : perl-Mozilla-CA-20130114-5.amzn2.noarch                                                                                                                      3/50
+  Installing : perl-Encode-Locale-1.03-5.amzn2.noarch                                                                                                                       4/50
+  Installing : perl-Params-Util-1.07-6.amzn2.0.2.x86_64                                                                                                                     5/50
+  Installing : perl-Sub-Install-0.926-6.amzn2.noarch                                                                                                                        6/50
+  Installing : perl-Digest-1.17-245.amzn2.noarch                                                                                                                            7/50
+  Installing : perl-Data-Dumper-2.145-3.amzn2.0.2.x86_64                                                                                                                    8/50
+  Installing : perl-Module-Runtime-0.013-4.amzn2.noarch                                                                                                                     9/50
+  Installing : perl-Module-Implementation-0.06-6.amzn2.noarch                                                                                                              10/50
+  Installing : perl-Params-Validate-1.08-4.amzn2.0.2.x86_64                                                                                                                11/50
+  Installing : perl-IO-Socket-IP-0.21-5.amzn2.noarch                                                                                                                       12/50
+  Installing : perl-List-MoreUtils-0.33-9.amzn2.0.2.x86_64                                                                                                                 13/50
+  Installing : perl-Package-DeprecationManager-0.13-7.amzn2.noarch                                                                                                         14/50
+  Installing : perl-DateTime-Locale-0.45-6.amzn2.noarch                                                                                                                    15/50
+  Installing : perl-Digest-MD5-2.52-3.amzn2.0.2.x86_64                                                                                                                     16/50
+  Installing : perl-Data-OptList-0.107-9.amzn2.noarch                                                                                                                      17/50
+  Installing : perl-Net-LibIDN-0.12-15.amzn2.0.2.x86_64                                                                                                                    18/50
+  Installing : perl-Class-Singleton-1.4-14.amzn2.noarch                                                                                                                    19/50
+  Installing : 1:perl-TimeDate-2.30-2.amzn2.noarch                                                                                                                         20/50
+  Installing : perl-HTTP-Date-6.02-8.amzn2.noarch                                                                                                                          21/50
+  Installing : perl-File-Listing-6.04-7.amzn2.noarch                                                                                                                       22/50
+  Installing : perl-HTML-Tagset-3.20-15.amzn2.noarch                                                                                                                       23/50
+  Installing : perl-IO-HTML-1.00-2.amzn2.noarch                                                                                                                            24/50
+  Installing : perl-Business-ISBN-Data-20120719.001-2.amzn2.noarch                                                                                                         25/50
+  Installing : perl-Business-ISBN-2.06-2.amzn2.noarch                                                                                                                      26/50
+  Installing : perl-URI-1.60-9.amzn2.noarch                                                                                                                                27/50
+  Installing : perl-WWW-RobotRules-6.02-5.amzn2.noarch                                                                                                                     28/50
+  Installing : perl-Net-SSLeay-1.55-6.amzn2.0.1.x86_64                                                                                                                     29/50
+  Installing : perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch                                                                                                                  30/50
+  Installing : perl-Compress-Raw-Bzip2-2.061-3.amzn2.0.2.x86_64                                                                                                            31/50
+  Installing : perl-IO-Compress-2.061-2.amzn2.noarch                                                                                                                       32/50
+  Installing : perl-Net-HTTP-6.06-2.amzn2.noarch                                                                                                                           33/50
+  Installing : mailcap-2.1.41-2.amzn2.noarch                                                                                                                               34/50
+  Installing : perl-LWP-MediaTypes-6.02-2.amzn2.noarch                                                                                                                     35/50
+  Installing : perl-HTTP-Message-6.06-6.amzn2.noarch                                                                                                                       36/50
+  Installing : perl-HTTP-Negotiate-6.01-5.amzn2.noarch                                                                                                                     37/50
+  Installing : perl-HTTP-Cookies-6.01-5.amzn2.noarch                                                                                                                       38/50
+  Installing : perl-HTTP-Daemon-6.01-8.amzn2.noarch                                                                                                                        39/50
+  Installing : perl-HTML-Parser-3.71-4.amzn2.0.2.x86_64                                                                                                                    40/50
+  Installing : perl-libwww-perl-6.05-2.amzn2.noarch                                                                                                                        41/50
+  Installing : perl-Package-Stash-XS-0.26-3.amzn2.0.2.x86_64                                                                                                               42/50
+  Installing : perl-Package-Stash-0.34-2.amzn2.noarch                                                                                                                      43/50
+  Installing : perl-Class-Load-0.20-3.amzn2.noarch                                                                                                                         44/50
+  Installing : perl-DateTime-TimeZone-1.70-2.amzn2.noarch                                                                                                                  45/50
+  Installing : 2:perl-DateTime-1.04-6.amzn2.1.0.x86_64                                                                                                                     46/50
+  Installing : perl-LWP-Protocol-https-6.04-4.amzn2.noarch                                                                                                                 47/50
+  Installing : 1:perl-Digest-SHA-5.85-4.amzn2.0.2.x86_64                                                                                                                   48/50
+  Installing : perl-Sys-Syslog-0.33-3.amzn2.0.2.x86_64                                                                                                                     49/50
+  Installing : perl-Switch-2.16-7.amzn2.noarch                                                                                                                             50/50
+  Verifying  : perl-Params-Validate-1.08-4.amzn2.0.2.x86_64                                                                                                                 1/50
+  Verifying  : perl-List-MoreUtils-0.33-9.amzn2.0.2.x86_64                                                                                                                  2/50
+  Verifying  : perl-IO-Socket-IP-0.21-5.amzn2.noarch                                                                                                                        3/50
+  Verifying  : perl-Package-Stash-XS-0.26-3.amzn2.0.2.x86_64                                                                                                                4/50
+  Verifying  : 1:perl-Compress-Raw-Zlib-2.061-4.amzn2.0.2.x86_64                                                                                                            5/50
+  Verifying  : perl-File-Listing-6.04-7.amzn2.noarch                                                                                                                        6/50
+  Verifying  : perl-HTTP-Negotiate-6.01-5.amzn2.noarch                                                                                                                      7/50
+  Verifying  : perl-Class-Load-0.20-3.amzn2.noarch                                                                                                                          8/50
+  Verifying  : mailcap-2.1.41-2.amzn2.noarch                                                                                                                                9/50
+  Verifying  : perl-LWP-MediaTypes-6.02-2.amzn2.noarch                                                                                                                     10/50
+  Verifying  : perl-Compress-Raw-Bzip2-2.061-3.amzn2.0.2.x86_64                                                                                                            11/50
+  Verifying  : perl-Switch-2.16-7.amzn2.noarch                                                                                                                             12/50
+  Verifying  : perl-Net-SSLeay-1.55-6.amzn2.0.1.x86_64                                                                                                                     13/50
+  Verifying  : perl-Sys-Syslog-0.33-3.amzn2.0.2.x86_64                                                                                                                     14/50
+  Verifying  : perl-Business-ISBN-Data-20120719.001-2.amzn2.noarch                                                                                                         15/50
+  Verifying  : perl-IO-HTML-1.00-2.amzn2.noarch                                                                                                                            16/50
+  Verifying  : perl-Module-Runtime-0.013-4.amzn2.noarch                                                                                                                    17/50
+  Verifying  : perl-HTTP-Date-6.02-8.amzn2.noarch                                                                                                                          18/50
+  Verifying  : perl-Net-HTTP-6.06-2.amzn2.noarch                                                                                                                           19/50
+  Verifying  : perl-Try-Tiny-0.12-2.amzn2.noarch                                                                                                                           20/50
+  Verifying  : 1:perl-Digest-SHA-5.85-4.amzn2.0.2.x86_64                                                                                                                   21/50
+  Verifying  : perl-Package-DeprecationManager-0.13-7.amzn2.noarch                                                                                                         22/50
+  Verifying  : perl-HTML-Tagset-3.20-15.amzn2.noarch                                                                                                                       23/50
+  Verifying  : 1:perl-TimeDate-2.30-2.amzn2.noarch                                                                                                                         24/50
+  Verifying  : perl-DateTime-TimeZone-1.70-2.amzn2.noarch                                                                                                                  25/50
+  Verifying  : perl-libwww-perl-6.05-2.amzn2.noarch                                                                                                                        26/50
+  Verifying  : perl-Data-Dumper-2.145-3.amzn2.0.2.x86_64                                                                                                                   27/50
+  Verifying  : perl-Data-OptList-0.107-9.amzn2.noarch                                                                                                                      28/50
+  Verifying  : perl-HTTP-Cookies-6.01-5.amzn2.noarch                                                                                                                       29/50
+  Verifying  : perl-DateTime-Locale-0.45-6.amzn2.noarch                                                                                                                    30/50
+  Verifying  : perl-IO-Socket-SSL-1.94-7.amzn2.0.1.noarch                                                                                                                  31/50
+  Verifying  : perl-Package-Stash-0.34-2.amzn2.noarch                                                                                                                      32/50
+  Verifying  : perl-Digest-1.17-245.amzn2.noarch                                                                                                                           33/50
+  Verifying  : perl-Class-Singleton-1.4-14.amzn2.noarch                                                                                                                    34/50
+  Verifying  : perl-HTTP-Daemon-6.01-8.amzn2.noarch                                                                                                                        35/50
+  Verifying  : 2:perl-DateTime-1.04-6.amzn2.1.0.x86_64                                                                                                                     36/50
+  Verifying  : perl-IO-Compress-2.061-2.amzn2.noarch                                                                                                                       37/50
+  Verifying  : perl-Module-Implementation-0.06-6.amzn2.noarch                                                                                                              38/50
+  Verifying  : perl-URI-1.60-9.amzn2.noarch                                                                                                                                39/50
+  Verifying  : perl-Digest-MD5-2.52-3.amzn2.0.2.x86_64                                                                                                                     40/50
+  Verifying  : perl-Sub-Install-0.926-6.amzn2.noarch                                                                                                                       41/50
+  Verifying  : perl-WWW-RobotRules-6.02-5.amzn2.noarch                                                                                                                     42/50
+  Verifying  : perl-HTTP-Message-6.06-6.amzn2.noarch                                                                                                                       43/50
+  Verifying  : perl-LWP-Protocol-https-6.04-4.amzn2.noarch                                                                                                                 44/50
+  Verifying  : perl-Net-LibIDN-0.12-15.amzn2.0.2.x86_64                                                                                                                    45/50
+  Verifying  : perl-HTML-Parser-3.71-4.amzn2.0.2.x86_64                                                                                                                    46/50
+  Verifying  : perl-Params-Util-1.07-6.amzn2.0.2.x86_64                                                                                                                    47/50
+  Verifying  : perl-Encode-Locale-1.03-5.amzn2.noarch                                                                                                                      48/50
+  Verifying  : perl-Business-ISBN-2.06-2.amzn2.noarch                                                                                                                      49/50
+  Verifying  : perl-Mozilla-CA-20130114-5.amzn2.noarch                                                                                                                     50/50
+
+Installed:
+  perl-DateTime.x86_64 2:1.04-6.amzn2.1.0      perl-Digest-SHA.x86_64 1:5.85-4.amzn2.0.2    perl-LWP-Protocol-https.noarch 0:6.04-4.amzn2    perl-Switch.noarch 0:2.16-7.amzn2
+  perl-Sys-Syslog.x86_64 0:0.33-3.amzn2.0.2
+
+Dependency Installed:
+  mailcap.noarch 0:2.1.41-2.amzn2                         perl-Business-ISBN.noarch 0:2.06-2.amzn2                    perl-Business-ISBN-Data.noarch 0:20120719.001-2.amzn2
+  perl-Class-Load.noarch 0:0.20-3.amzn2                   perl-Class-Singleton.noarch 0:1.4-14.amzn2                  perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.amzn2.0.2
+  perl-Compress-Raw-Zlib.x86_64 1:2.061-4.amzn2.0.2       perl-Data-Dumper.x86_64 0:2.145-3.amzn2.0.2                 perl-Data-OptList.noarch 0:0.107-9.amzn2
+  perl-DateTime-Locale.noarch 0:0.45-6.amzn2              perl-DateTime-TimeZone.noarch 0:1.70-2.amzn2                perl-Digest.noarch 0:1.17-245.amzn2
+  perl-Digest-MD5.x86_64 0:2.52-3.amzn2.0.2               perl-Encode-Locale.noarch 0:1.03-5.amzn2                    perl-File-Listing.noarch 0:6.04-7.amzn2
+  perl-HTML-Parser.x86_64 0:3.71-4.amzn2.0.2              perl-HTML-Tagset.noarch 0:3.20-15.amzn2                     perl-HTTP-Cookies.noarch 0:6.01-5.amzn2
+  perl-HTTP-Daemon.noarch 0:6.01-8.amzn2                  perl-HTTP-Date.noarch 0:6.02-8.amzn2                        perl-HTTP-Message.noarch 0:6.06-6.amzn2
+  perl-HTTP-Negotiate.noarch 0:6.01-5.amzn2               perl-IO-Compress.noarch 0:2.061-2.amzn2                     perl-IO-HTML.noarch 0:1.00-2.amzn2
+  perl-IO-Socket-IP.noarch 0:0.21-5.amzn2                 perl-IO-Socket-SSL.noarch 0:1.94-7.amzn2.0.1                perl-LWP-MediaTypes.noarch 0:6.02-2.amzn2
+  perl-List-MoreUtils.x86_64 0:0.33-9.amzn2.0.2           perl-Module-Implementation.noarch 0:0.06-6.amzn2            perl-Module-Runtime.noarch 0:0.013-4.amzn2
+  perl-Mozilla-CA.noarch 0:20130114-5.amzn2               perl-Net-HTTP.noarch 0:6.06-2.amzn2                         perl-Net-LibIDN.x86_64 0:0.12-15.amzn2.0.2
+  perl-Net-SSLeay.x86_64 0:1.55-6.amzn2.0.1               perl-Package-DeprecationManager.noarch 0:0.13-7.amzn2       perl-Package-Stash.noarch 0:0.34-2.amzn2
+  perl-Package-Stash-XS.x86_64 0:0.26-3.amzn2.0.2         perl-Params-Util.x86_64 0:1.07-6.amzn2.0.2                  perl-Params-Validate.x86_64 0:1.08-4.amzn2.0.2
+  perl-Sub-Install.noarch 0:0.926-6.amzn2                 perl-TimeDate.noarch 1:2.30-2.amzn2                         perl-Try-Tiny.noarch 0:0.12-2.amzn2
+  perl-URI.noarch 0:1.60-9.amzn2                          perl-WWW-RobotRules.noarch 0:6.02-5.amzn2                   perl-libwww-perl.noarch 0:6.05-2.amzn2
+
+Complete!
+[ec2-user@ip-10-25-15-20 ~]$ curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 24089  100 24089    0     0  41942      0 --:--:-- --:--:-- --:--:-- 41966
+[ec2-user@ip-10-25-15-20 ~]$ unzip CloudWatchMonitoringScripts-1.2.1.zip
+Archive:  CloudWatchMonitoringScripts-1.2.1.zip
+ extracting: aws-scripts-mon/awscreds.template
+  inflating: aws-scripts-mon/AwsSignatureV4.pm
+  inflating: aws-scripts-mon/CloudWatchClient.pm
+  inflating: aws-scripts-mon/LICENSE.txt
+  inflating: aws-scripts-mon/mon-get-instance-stats.pl
+  inflating: aws-scripts-mon/mon-put-instance-data.pl
+  inflating: aws-scripts-mon/NOTICE.txt
+[ec2-user@ip-10-25-15-20 ~]$ rm CloudWatchMonitoringScripts-1.2.1.zip
+[ec2-user@ip-10-25-15-20 ~]$ cd aws-scripts-mon
+[ec2-user@ip-10-25-15-20 aws-scripts-mon]$ cp awscreds.template awscreds.conf
+[ec2-user@ip-10-25-15-20 aws-scripts-mon]$ ./mon-put-instance-data.pl --mem-util --verify --verbose
+MemoryUtilization: 2.20162172149644 (Percent)
+Using AWS credentials file <./awscreds.conf>
+No credential methods are specified. Trying default IAM role.
+Using IAM role <synclog>
+Endpoint: https://monitoring.ap-south-1.amazonaws.com
+Payload: {"MetricData":[{"Timestamp":1653314121,"Dimensions":[{"Value":"i-0d46b374fb376553e","Name":"InstanceId"}],"Value":2.20162172149644,"Unit":"Percent","MetricName":"MemoryUtilization"}],"Namespace":"System/Linux","__type":"com.amazonaws.cloudwatch.v2010_08_01#PutMetricDataInput"}
+
+Verification completed successfully. No actual metrics sent to CloudWatch.
+
+[ec2-user@ip-10-25-15-20 aws-scripts-mon]$ ./mon-put-instance-data.pl --mem-util --mem-used-incl-cache-buff --mem-used --mem-avail
+
+Successfully reported metrics to CloudWatch. Reference Id: 4766da22-b555-47b7-afc6-8ea83c9c23fe
+
+[ec2-user@ip-10-25-15-20 aws-scripts-mon]$ crontab -e
+no crontab for ec2-user - using an empty one
+crontab: installing new crontab
+[ec2-user@ip-10-25-15-20 aws-scripts-mon]$ history
+    1  20220523 19:22:48 df -h
+    2  20220523 19:22:48 exit
+    3  20220523 19:22:48 timedatectl set-timezone Asia/Kolkata
+    4  20220523 19:22:48 sudo su
+    5  20220523 19:22:48 exit
+    6  20220523 18:51:30 sudo su
+    7  20220523 18:51:42 history
+    8  20220523 18:52:00 sudo su
+    9  20220523 19:16:41 df -h
+   10  20220523 19:17:36 sudo dd if=/dev/zero of=/swapfile bs=1M count=20480
+   11  20220523 19:20:33 sudo chmod 600 /swapfile
+   12  20220523 19:20:41 sudo mkswap /swapfile
+   13  20220523 19:20:57 sudo swapon /swapfile
+   14  20220523 19:21:27 sudo vi /etc/fstab
+   15  20220523 19:21:42 free -g
+   16  20220523 19:21:48 reboot
+   17  20220523 19:22:03 sudo su
+   18  20220523 19:22:50 free -g
+   19  20220523 19:24:04 sudo yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA
+   20  20220523 19:24:27 curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
+   21  20220523 19:24:36 unzip CloudWatchMonitoringScripts-1.2.1.zip
+   22  20220523 19:24:43 rm CloudWatchMonitoringScripts-1.2.1.zip
+   23  20220523 19:24:55 cd aws-scripts-mon
+   24  20220523 19:25:02 cp awscreds.template awscreds.conf
+   25  20220523 19:25:21 ./mon-put-instance-data.pl --mem-util --verify --verbose
+   26  20220523 19:25:56 ./mon-put-instance-data.pl --mem-util --mem-used-incl-cache-buff --mem-used --mem-avail
+   27  20220523 19:26:09 crontab -e
+   28  20220523 19:34:20 history
+[ec2-user@ip-10-25-15-20 aws-scripts-mon]$

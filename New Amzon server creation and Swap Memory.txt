@@ -1,0 +1,42 @@
+
+yum -y update
+sudo timedatectl set-timezone Asia/Kolkata
+sudo echo 'HISTTIMEFORMAT="%Y%m%d %T "' >> /etc/profile.d/timestamp.sh   
+sudo echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bashrc   
+sudo echo 'AddressFamily inet' >> /etc/ssh/sshd_config
+sudo systemctl restart sshd
+sudo echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf
+sudo echo 'net.ipv6.conf.default.disable_ipv6 = 1' >> /etc/sysctl.conf
+sudo sysctl -p
+==========================================================================================================================================
+
+#SWAP_MEMORY_CONFIGURATION
+
+sudo dd if=/dev/zero of=/swapfile bs=1M count=20480
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo su
+echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
+=========================================================================================================================================
+
+MEMROY METRICS CONFIGURE
+
+Ec2-user 
+
+
+sudo yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA -y
+sudo yum install zip unzip -y
+curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
+unzip CloudWatchMonitoringScripts-1.2.1.zip
+rm CloudWatchMonitoringScripts-1.2.1.zip
+cd aws-scripts-mon
+cp awscreds.template awscreds.conf
+sudo su
+echo "*/5 * * * * ec2-user ~/aws-scripts-mon/mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --disk-space-util --disk-path=/ --disk-path=/mnt/ebs1 --from-cron" >> /etc/crontab
+chown ec2-user:ec2-user -R /home/ec2-user/aws-scripts-mon
+-----IAM ROLE COMMAND
+./mon-put-instance-data.pl --mem-util --verify --verbose
+./mon-put-instance-data.pl --mem-util --mem-used-incl-cache-buff --mem-used --mem-avail
+
+=============================================================================================================================================
