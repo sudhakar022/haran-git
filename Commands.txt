@@ -1,0 +1,8 @@
+sudo grep -i -r 'out of memory' /var/log
+
+
+
+folder permission:sudo setfacl -Rm u:amith.basha:rwx ROOT
+
+siva.nesan
+895@june.in
