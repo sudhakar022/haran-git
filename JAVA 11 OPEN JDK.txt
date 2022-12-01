@@ -1,0 +1,39 @@
+Step 1: Download java 11 from below link
+
+https://adoptopenjdk.net/index.html?variant=openjdk11&jvmVariant=hotspot
+
+Step 2: Extract the downloaded file.
+
+File name jdk-11.0.2+9
+
+Step 3: copy the downloaded file to system.
+
+cp -R /home/bsdeskroot/jdk-11.0.2+9/ /usr/lib/jvm/
+
+Step 4: to install java 11 now execute the below cmd.
+
+sudo sh -c 'for bin in /usr/lib/jvm/jdk-11.0.2+9/bin/*; do update-alternatives --install /usr/bin/$(basename $bin) $(basename $bin) $bin 100; done'
+
+sudo sh -c 'for bin in /usr/lib/jvm/jdk-11.0.2+9/bin/*; do update-alternatives --set $(basename $bin) $bin; done'
+
+To check the java 11 is installed correctly installed or not
+
+Run the below cmd and get result without any error
+
+Java  -version
+
+Javac –version
+
+Mvn –v (if mvn not installed ignore it )
+
+
+cp -R /home/ec2-user/jdk8u222-b10 /usr/lib/jvm/
+
+
+export JAVA_HOME=/usr/bin/java
+
+
+sudo sh -c 'for bin in /usr/lib/jvm/bin/*; do update-alternatives --install /usr/bin/$(basename $bin) $(basename $bin) $bin 100; done'
+
+sudo sh -c 'for bin in /usr/lib/jvm/bin/*; do update-alternatives --set $(basename $bin) $bin; done'
+

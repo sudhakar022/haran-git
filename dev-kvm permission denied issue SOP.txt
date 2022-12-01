@@ -1,0 +1,13 @@
+sudo apt install qemu-kvm
+
+( Add your user to kvm group using )
+
+sudo adduser <Replace with username> kvm
+
+Ex: sudo adduser sarath.kumar kvm
+
+( If still showing permission denied )
+
+sudo chown <Replace with username> /dev/kvm
+
+Ex: sudo chown sarath.kumar /dev/kvm

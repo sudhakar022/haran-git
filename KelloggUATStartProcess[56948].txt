@@ -1,0 +1,83 @@
+-- To connect Application Server
+==========================================
+ssh botree@13.127.28.172
+B0otR33$K3l1oG$2ol8
+
+-- To Stop Web application services run the below command:
+==========================================
+ps -ef | grep csng_web_instance
+
+Process id will be display for each process. Kill the process by the below command.
+
+Kill -9 [process id of the service]
+
+-- To Start Web Application Service: 
+==========================================
+cd /home/botree/csng_web_instance/apache-tomcat-8_0_30/bin
+
+./startup.sh
+
+-- To Stop INTERDB Service: 
+==========================================
+ps -ef | grep csng-interdb.jar
+
+Process id will be display for each process. Kill the process by the below command.
+
+Kill -9 [process id of the service]
+
+-- To Start Interdb Service:
+==========================================
+cd /home/botree/csng_interdb_boot_instance
+  
+java -DinterdbConfig.dir=/home/botree/csng_interdb_boot_instance/config -Dserver.port=11082 -jar csng-interdb.jar &
+
+-- To Stop ERP Service:
+==========================================
+
+ps -ef | grep csng_erp_instance
+  
+Process id will be display for each process. Kill the process by the below command.
+
+Kill -9 [process id of the service]
+
+-- To Start ERP Service:
+==========================================
+
+cd /home/botree/csng_erp_instance/apache-tomcat-8_0_30/bin
+
+./startup.sh
+
+-- To Stop csng_analytics_boot_instance
+
+==========================================
+
+ps -ef | grep csng-erpanalytics.jar --- not
+
+Process id will be display for each process. Kill the process by the below command.
+
+Kill -9 [process id of the service]
+
+-- To Start csng_analytics_boot_instance
+
+==========================================
+
+cd /home/botree/csng_analytics_boot_instance
+
+java -DanalyticsConfig.dir=/home/botree/csng_analytics_boot_instance/config -Dserver.port=11084 -jar csng-erpanalytics.jar &
+
+-- To Stop csng_retailer_modification_instance:
+=========================================== 
+
+ps -ef | grep attributeupload-1.0.0.jar
+
+Process id will be display for each process. Kill the process by the below command.
+
+Kill -9 [process id of the service]
+
+-- To Start csng_retailer_modification_instance:
+==========================================
+
+cd /home/botree/csng_retailer_modification_instance
+
+java -jar attributeupload-1.0.0.jar &
+

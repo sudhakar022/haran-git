@@ -1,0 +1,1 @@
+aws s3 sync /home/ec2-user/monthlylogs/ s3://kellogs3stg01/InstanceLogs/UAT

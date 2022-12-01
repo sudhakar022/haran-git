@@ -1,0 +1,18 @@
+sudo apt install openjdk-11-jdk
+sudo apt install openjdk-8-jdk
+
+sudo update-alternatives --config java
+
+sudo apt remove openjdk-8-jdk
+
+1. export JAVA_HOME=/usr/lib/jvm/java-11
+2. mvn eclipse:eclipse
+3. mvn clean install -DskipTests=true
+
+
+
+
+
+
+ netstat -tulpn
+

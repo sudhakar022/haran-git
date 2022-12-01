@@ -1,0 +1,3 @@
+sudo apt remove ng-common
+sudo npm uninstall -g @angular/cli
+sudo npm install -g @angular/cli

@@ -1,0 +1,82 @@
+
+01. Teamviewer_8
+
+
+02.Java8
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+
+
+03.RabbitSVN   ------>  sudo apt-get install rabbitvcs*
+
+
+04.IPtux ------------>	sudo apt-get install iptux
+
+
+05.Google_64 BItdd  - 
+Download the package (64 bit):
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+
+sudo apt-get install -f
+
+
+06. mysql-workbench -->	sudo apt-get install mysql-workbench
+
+
+07. Jaspersoft
+
+
+08. maven --->  sudo apt-get install maven
+
+
+09. WPS
+
+
+10.Block USB -----> sudo chmod -R 444 /media/
+
+
+11. RAR    ------>  sudo apt-get install unrar
+
+
+12. ssh ---> sudo apt-get install openssh-server 
+
+
+13. Putty ----->sudo apt-get install putty
+
+
+14 Filezilla ---->sudo apt install filezilla
+
+
+15. HP printer driver remove - sudo apt purge hplip
+
+
+16. SQLiteman ---> sudo apt-get install sqliteman
+
+
+17. Postman ---> folder \\...ubuntu\Postman
+
+
+18. Android Studio
+ only for Android
+ 
+
+19. ATOM editior installation --
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get update
+sudo apt-get install atom 
+
+
+Install from User LOGIN Application
+
+11.
+Squirrel_SQL exit
+
+
+
+
+
+

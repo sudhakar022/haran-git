@@ -1,0 +1,6 @@
+hostname = dfs.dabur.com
+ port = 990
+user = ftp.botree
+pass = Intel@dabur@2019
+
+Folder - Botree

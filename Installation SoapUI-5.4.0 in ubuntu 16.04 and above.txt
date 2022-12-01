@@ -1,0 +1,13 @@
+KINDLY INSTALL BY USING USER PROFILE ONLY
+
+# wget https://s3.amazonaws.com/downloads.eviware/soapuios/5.4.0/SoapUI-5.4.0-linux-bin.tar.gz
+
+# gunzip SoapUI-5.4.0-linux-bin.tar.gz
+
+# tar -xvf SoapUI-5.4.0-linux-bin.tar
+
+# cd SoapUI-5.4.0/bin
+
+# chmod +x soapui.sh
+
+ # ./soapui.sh

@@ -1,0 +1,5 @@
+cut -d: -f1 /etc/passwd (to list the username in linux)
+chage -l username
+ lastlog -b 0 -t 100 (last login details)
+
+cut -d: -f1 /etc/passwd 

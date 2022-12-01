@@ -1,0 +1,23 @@
+kill the iptux
+    killall iptux
+
+If iptux running in backend,not showing in Frontend
+    
+sudo nano <config file path>/%gconf.xml
+
+        sudo nano ~/.cache/iptux/%gconf.xml 
+        sudo nano ~/.gconf/apps/iptux/%gconf.xml 
+        sudo nano ~/.config/iptux/%gconf.xml 
+
+                name="hide_startup" mtime="1343670281" type="bool" value="true"
+                    change to 
+                name="hide_startup" mtime="1343670281" type="bool" value="false"
+
+restart the system and login and check the iptux
+
+Default port number
+    port number: 2425
+
+If not solved 
+    sudo apt-get autoremove iptux
+    sudo apt-get install iptux

@@ -1,0 +1,6 @@
+
+
+sudo find /sdb2 -xdev -type f -size +100M -exec du -sh {} ';' | sort -rh | head -n200
+
+sudo du -sh /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs
+

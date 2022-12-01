@@ -1,0 +1,30 @@
+sasikumar
+E$R%T^y7
+
+https://288090409331.signin.aws.amazon.com/console
+
+
+
+LIVE-Nestle-IND-APPLICATION = 13.126.154.201
+LIVE-Nestle-IND-CONSOLE-DB = 13.127.159.69
+LIVE-Nestle-Lanka-DB = 13.232.193.140
+LIVE-Nestle-IND-SYNC-DB = 13.233.9.67
+
+UAT-Nestle-APPLICATION = 13.232.11.57
+UAT-Nestle-DB = 13.127.157.178
+
+UAT-NESTLE-NEW-APP_DB =3.6.92.166
+
+https://400670705289.signin.aws.amazon.com/console
+
+Nestle-CSNG-DMS-App-3
+
+Scheduler
+setfacl -R -m user:muthukrishnan.g:rwx /mnt/ebs1/Nestle
+
+satheeshkumarv
+Password : $aTH3#ShK7mA6V
+
+
+
+  

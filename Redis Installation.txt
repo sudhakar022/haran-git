@@ -1,0 +1,15 @@
+***REDIS SERVER INSTALLATION***
+
+
+yum install gcc
+
+wget http://download.redis.io/redis-stable.tar.gz
+
+cd redis-stable
+
+make
+
+sudo cp src/redis-server /usr/bin/
+
+sudo cp src/redis-cli /usr/bin/
+

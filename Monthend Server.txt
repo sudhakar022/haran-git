@@ -1,0 +1,161 @@
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         32G     0   32G   0% /dev
+tmpfs            32G  4.0K   32G   1% /dev/shm
+tmpfs            32G  552K   32G   1% /run
+tmpfs            32G     0   32G   0% /sys/fs/cgroup
+/dev/nvme0n1p1  112G   19G   94G  17% /
+/dev/nvme1n1    185G  167G  9.0G  95% /mnt/ebs1
+tmpfs           6.3G     0  6.3G   0% /run/user/0
+tmpfs           6.3G     0  6.3G   0% /run/user/1000
+
+5.9G    /mnt/ebs1/templog/logs/catalina.out
+5.9G    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/catalina.out
+198M    /mnt/ebs1/Nestle_CSNG_APP/nestle/config/reports/output/9B66317A35BD86FF1                                                                                        55C307E0C1A0CF1_erp_retailer_upload.csv
+197M    /mnt/ebs1/Nestle_CSNG_APP/nestle/config/reports/output/9704A733D419B6A91                                                                                        D487B04F6DF7A31_erp_retailer_upload.csv
+187M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-22.txt
+187M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-22.txt
+185M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-04.txt
+185M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-04.txt
+175M    /mnt/ebs1/templog/logs/localhost_access_log.2021-04-07.txt
+175M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-04-07.txt
+169M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-30.txt
+169M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-30.txt
+166M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-18.txt
+166M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-18.txt
+164M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-20.txt
+164M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-20.txt
+160M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-19.txt
+160M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-19.txt
+159M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-24.txt
+159M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-03.txt
+159M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-24.txt
+159M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-03.txt
+157M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-20.txt
+157M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-15.txt
+157M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-20.txt
+157M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-15.txt
+156M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-29.txt
+156M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-29.txt
+155M    /mnt/ebs1/templog/logs/localhost_access_log.2021-04-08.txt
+155M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-31.txt
+155M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-04-08.txt
+155M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-31.txt
+153M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-19.txt
+153M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-19.txt
+151M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-05.txt
+151M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-05.txt
+150M    /mnt/ebs1/templog/logs/localhost_access_log.2021-04-09.txt
+150M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-04-09.txt
+145M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-06.txt
+145M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-06.txt
+144M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-28.txt
+144M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-28.txt
+140M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-25.txt
+140M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-23.txt
+140M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-25.txt
+140M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-23.txt
+138M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-30.txt
+138M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-30.txt
+137M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-02.txt
+137M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-02.txt
+136M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-16.txt
+136M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-05.txt
+136M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-16.txt
+136M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-05.txt
+135M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-11.txt
+135M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-11.txt
+134M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-26.txt
+134M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-17.txt
+134M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-26.txt
+134M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-17.txt
+133M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-03.txt
+133M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-03.txt
+132M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-23.txt
+132M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-08.txt
+132M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-07.txt
+132M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-23.txt
+132M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-08.txt
+132M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-07.txt
+130M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-05.txt
+130M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-19.txt
+130M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-05.txt
+130M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-19.txt
+128M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-09.txt
+128M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-30.txt
+128M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-09.txt
+128M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-30.txt
+127M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-14.txt
+127M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-14.txt
+126M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-03.txt
+126M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-03.txt
+124M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-01.txt
+124M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-02.txt
+124M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-01.txt
+124M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-02.txt
+123M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-17.txt
+123M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-17.txt
+119M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-01.txt
+119M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-26.txt
+119M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-01.txt
+119M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-26.txt
+118M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-13.txt
+118M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-10.txt
+118M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-13.txt
+118M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-10.txt
+116M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-02.txt
+116M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-01.txt
+116M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-02.txt
+116M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-01.txt
+115M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-12.txt
+115M    /mnt/ebs1/templog/logs/localhost_access_log.2020-12-29.txt
+115M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-12.txt
+115M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-12-29.txt
+114M    /mnt/ebs1/templog/logs/localhost_access_log.2021-04-03.txt
+114M    /mnt/ebs1/templog/logs/localhost_access_log.2021-04-01.txt
+114M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-29.txt
+114M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-22.txt
+114M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-10.txt
+114M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-04-03.txt
+114M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-04-01.txt
+114M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-29.txt
+114M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-22.txt
+114M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-10.txt
+112M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-10.txt
+112M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-28.txt
+112M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-19.txt
+112M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-10.txt
+112M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-28.txt
+112M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-19.txt
+111M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-17.txt
+111M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-17.txt
+109M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-08.txt
+109M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-23.txt
+109M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-18.txt
+109M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-08.txt
+109M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-23.txt
+109M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-18.txt
+108M    /mnt/ebs1/templog/logs/localhost_access_log.2021-04-02.txt
+108M    /mnt/ebs1/templog/logs/localhost_access_log.2021-02-27.txt
+108M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-31.txt
+108M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-04-02.txt
+108M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-02-27.txt
+108M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-31.txt
+107M    /mnt/ebs1/templog/logs/localhost_access_log.2021-01-04.txt
+107M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-01-04.txt
+106M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-03.txt
+106M    /mnt/ebs1/Nestle_CSNG_APP/ReleaseBackup/ROOT.war_18022021
+106M    /mnt/ebs1/Nestle_CSNG_APP/ReleaseBackup/ROOT.war_03032021
+106M    /mnt/ebs1/Nestle_CSNG_APP/ReleaseBackup/ROOT.war_03022021
+106M    /mnt/ebs1/Nestle_CSNG_APP/ReleaseBackup/ROOT.war_01042021
+106M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/webapps/ROOT.war
+106M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-03.txt
+105M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-24.txt
+105M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-24.txt
+103M    /mnt/ebs1/templog/logs/localhost_access_log.2020-10-12.txt
+103M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-10-12.txt
+102M    /mnt/ebs1/templog/logs/localhost_access_log.2021-03-09.txt
+102M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-24.txt
+102M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2021-03-09.txt
+102M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-24.txt
+101M    /mnt/ebs1/templog/logs/localhost_access_log.2020-09-21.txt
+101M    /mnt/ebs1/Nestle_CSNG_APP/nestle/server/tomcat/logs/localhost_access_log                                                                                        .2020-09-21.txt

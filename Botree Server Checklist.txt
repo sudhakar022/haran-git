@@ -1,0 +1,19 @@
+Dear Sir,
+
+Please find the on premise server checklist
+
+
+Note 
+1.	BSIL0013 server space issue
+2.	BSIL0015 server space issue
+3.	BSIL0017 server space issue
+4.	BSIL0018 server space issue (E Drive Critical Free 11.0 GB)
+5.	BSIL0019 server space issue (MNT Free  5.5 GB)
+6.	BSIL0028 server space issue
+7.	BSIL0029 server space issue
+8.	Veeam Backup Completed Successfully.
+
+
+Regards,
+Sriram S
+IT

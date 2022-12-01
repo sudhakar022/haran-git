@@ -1,0 +1,5 @@
+1. Install
+sudo apt update
+sudo apt install gconf-service
+
+2. dpkg -i iptux_0.6.3-1_amd64.deb
